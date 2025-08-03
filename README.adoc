@@ -1,0 +1,51 @@
+// Settings:
+:toc: macro
+:!toc-title:
+// URLs:
+:img-hoc: https://hitsofcode.com/github/rdavid/cbase?branch=master&label=hits%20of%20code
+:img-license: https://img.shields.io/github/license/rdavid/cbase?color=blue&labelColor=gray&logo=freebsd&logoColor=lightgray&style=flat
+:img-test: https://github.com/rdavid/cbase/actions/workflows/test.yml/badge.svg
+:url-actionlint: https://github.com/rhysd/actionlint
+:url-base: https://github.com/rdavid/shellbase/blob/master/lib/base.sh
+:url-checkmake: https://github.com/mrtazz/checkmake
+:url-cv: http://cv.rabkin.co.il
+:url-goredo: http://www.goredo.cypherpunks.su/Install.html
+:url-hoc: https://hitsofcode.com/view/github/rdavid/cbase?branch=master
+:url-license: https://github.com/rdavid/cbase/blob/master/LICENSES/0BSD.txt
+:url-redo: http://cr.yp.to/redo.html
+:url-reuse: https://github.com/fsfe/reuse-action
+:url-test: https://github.com/rdavid/cbase/actions/workflows/test.yml
+:url-typos: https://github.com/crate-ci/typos
+:url-yamllint: https://github.com/adrienverge/yamllint
+
+= C Base
+
+image:{img-test}[test,link={url-test}]
+image:{img-hoc}[hits of code,link={url-hoc}]
+image:{img-license}[license,link={url-license}]
+
+toc::[]
+
+== About
+
+A collection of basic C language functions and examples.
+
+== Build
+
+The project uses Daniel J. Bernstein's build system {url-redo}[`redo`].
+You can install Sergey Matveev's {url-goredo}[`goredo`] implementation.
+
+== Test
+
+`redo test` runs unit tests.
+`redo lint` applies the following linters to the source files:
+{url-actionlint}[`actionlint`],
+{url-checkmake}[`checkmake`],
+{url-reuse}[`reuse`],
+{url-typos}[`typos`],
+{url-yamllint}[`yamllint`].
+
+== License
+
+`cbase` is copyright {url-cv}[David Rabkin] and available under a
+{url-license}[Zero-Clause BSD license].

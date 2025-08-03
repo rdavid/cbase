@@ -1,0 +1,26 @@
+# SPDX-FileCopyrightText: 2025 David Rabkin
+# SPDX-License-Identifier: 0BSD
+# This workflow has limitations -- Ubuntu lacks a redo package.
+---
+name: test
+'on':
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+jobs:
+  test:
+    name: Test on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+          - macos-13
+          - macos-14
+          - macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          brew install goredo

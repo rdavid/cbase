@@ -1,0 +1,13 @@
+# SPDX-FileCopyrightText: 2025 David Rabkin
+# SPDX-License-Identifier: 0BSD
+version = 1
+[[annotations]]
+path = [
+	".DS_Store",
+	".gitignore",
+	".redo/**",
+	"README.adoc",
+]
+precedence = "override"
+SPDX-FileCopyrightText = "2025 David Rabkin"
+SPDX-License-Identifier = "0BSD"
