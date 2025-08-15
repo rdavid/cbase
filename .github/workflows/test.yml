@@ -1,6 +1,5 @@
 # SPDX-FileCopyrightText: 2025 David Rabkin
 # SPDX-License-Identifier: 0BSD
-# This workflow has limitations -- Ubuntu lacks a redo package.
 ---
 name: test
 'on':
@@ -23,4 +22,5 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - run: |
+          brew update
           brew install goredo
