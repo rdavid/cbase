@@ -9,7 +9,7 @@
 :url-base: https://github.com/rdavid/shellbase/blob/master/lib/base.sh
 :url-checkmake: https://github.com/mrtazz/checkmake
 :url-cv: http://cv.rabkin.co.il
-:url-goredo: http://www.goredo.cypherpunks.su/Install.html
+:url-goredo: http://www.goredo.stargrave.org/INSTALL.html
 :url-hoc: https://hitsofcode.com/view/github/rdavid/cbase?branch=master
 :url-license: https://github.com/rdavid/cbase/blob/master/LICENSES/0BSD.txt
 :url-redo: http://cr.yp.to/redo.html
