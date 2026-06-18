@@ -2,7 +2,15 @@
 # SPDX-License-Identifier: 0BSD
 ---
 name: checkmake
-'on': [pull_request, push]
+'on':
+  pull_request:
+  push:
+    branches: [master]
+permissions:
+  contents: read
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
 env:
   CM_BIN: /usr/local/bin/checkmake
   CM_URL: https://github.com/checkmake/checkmake/releases/download/v0.3.2/checkmake-v0.3.2.linux.amd64 # yamllint disable-line
