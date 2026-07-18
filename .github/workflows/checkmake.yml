@@ -21,6 +21,7 @@ jobs:
           persist-credentials: false
       - run: |
           bin=/usr/local/bin/checkmake
+          sum=e2effb876913f3ee2caef0ba35f6202c5e8a3cd55a077d8d2b9ce2034257b6af
           ver=0.3.2
           srv=https://github.com/checkmake/checkmake/releases/download
           curl \
@@ -30,6 +31,7 @@ jobs:
             --show-error \
             --silent \
             "$srv/v$ver/checkmake-v$ver.linux.amd64"
+          echo "$sum  $bin" | sha256sum --check --quiet
           chmod +x "$bin"
           find . -path ./.git -prune -o \
             \( -name Makefile -o -name '*.mk' \) -print0 |
