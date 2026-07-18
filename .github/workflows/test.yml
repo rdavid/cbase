@@ -4,8 +4,13 @@
 name: test
 'on':
   pull_request:
+    paths: &paths
+      - .github/workflows/test.yml
+      - include/**
+      - src/**
   push:
     branches: [master]
+    paths: *paths
 permissions:
   contents: read
 concurrency:

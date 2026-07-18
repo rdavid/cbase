@@ -4,8 +4,14 @@
 name: checkmake
 'on':
   pull_request:
+    paths: &paths
+      - '**.mk'
+      - '**/Makefile'
+      - .github/workflows/checkmake.yml
+      - Makefile
   push:
     branches: [master]
+    paths: *paths
 permissions:
   contents: read
 concurrency:

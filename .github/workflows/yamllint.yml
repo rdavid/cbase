@@ -4,8 +4,10 @@
 name: yamllint
 'on':
   pull_request:
+    paths: &paths ['.github/**']
   push:
     branches: [master]
+    paths: *paths
 permissions:
   contents: read
 concurrency:
