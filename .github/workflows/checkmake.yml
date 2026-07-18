@@ -11,15 +11,29 @@ permissions:
 concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
   cancel-in-progress: true
-env:
-  CM_BIN: /usr/local/bin/checkmake
-  CM_URL: https://github.com/checkmake/checkmake/releases/download/v0.3.2/checkmake-v0.3.2.linux.amd64 # yamllint disable-line
 jobs:
   checkmake:
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v7.0.0
+        with:
+          persist-credentials: false
       - run: |
-          curl --location --output "$CM_BIN" --silent "$CM_URL"
-          chmod +x "$CM_BIN"
+          bin=/usr/local/bin/checkmake
+          ver=0.3.2
+          srv=https://github.com/checkmake/checkmake/releases/download
+          curl \
+            --fail \
+            --location \
+            --output "$bin" \
+            --show-error \
+            --silent \
+            "$srv/v$ver/checkmake-v$ver.linux.amd64"
+          chmod +x "$bin"
+          find . -path ./.git -prune -o \
+            \( -name Makefile -o -name '*.mk' \) -print0 |
+            xargs \
+              --no-run-if-empty \
+              --null \
+              "$bin"
