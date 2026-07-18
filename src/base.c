@@ -24,12 +24,12 @@ int print_to_string(char *str, size_t len, const char *fmt, ...) {
         //     fmt, strerror_r_improved(errno, buf, ARRAYSIZE(buf)));
         return -1;
     }
-    // Part of the string was written, the output of snprintf is always null
-    // terminated and can be printed for debug.
+    // Only part of the string was written. The output of vsnprintf is always
+    // null terminated and can be printed for debugging.
     if ((size_t)num >= len) {
         // LOGE("Buffer %zu is smaller than needed %d: %s.",
         //     len, num + 1, str);
-        // Cancels partially printed data.
+        // Discards the partially printed data.
         str[0] = '\0';
         return -1;
     }
@@ -65,7 +65,7 @@ const char *humanized_timestamp(char *str, size_t len) {
     }
     size_t bytes = strftime(str, len, "%c", ptm);
     if (0 == bytes) {
-        // strftime doesn't set errno.
+        // The function strftime does not set errno.
         // LOGE("Unable to print time to a buffer of size %zu.", len);
         return err;
     }
