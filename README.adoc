@@ -18,6 +18,7 @@
 :url-test: https://github.com/rdavid/cbase/actions/workflows/test.yml
 :url-typos: https://github.com/crate-ci/typos
 :url-yamllint: https://github.com/adrienverge/yamllint
+:url-zizmor: https://github.com/zizmorcore/zizmor
 
 = C Base
 
@@ -63,7 +64,8 @@ messages:
 {url-conform}[`conform`],
 {url-reuse}[`reuse`],
 {url-typos}[`typos`],
-{url-yamllint}[`yamllint`].
+{url-yamllint}[`yamllint`],
+{url-zizmor}[`zizmor`].
 
 == License
 
