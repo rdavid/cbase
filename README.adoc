@@ -39,7 +39,8 @@ Sergey Matveev's {url-goredo}[`goredo`] implementation works well.
 == Test
 
 `redo test` runs the unit tests.
-`redo lint` applies the following linters to the source files:
+`redo lint` applies the following linters to the source files and commit
+messages:
 {url-actionlint}[`actionlint`],
 {url-checkmake}[`checkmake`],
 {url-conform}[`conform`],

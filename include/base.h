@@ -96,7 +96,8 @@
 #define STR(x) _STR(x)
 
 /**
- * Converts formatted output, similar to snprintf with logged error handling.
+ * Formats output into a string, similar to snprintf, with logged error
+ * handling.
  * The function writes at most len-1 of the printed characters into the output
  * string (the len'th character then gets the terminating `\0'). If the return
  * value is greater than or equal to the len argument, the string was too
