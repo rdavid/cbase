@@ -8,6 +8,7 @@
 :url-actionlint: https://github.com/rhysd/actionlint
 :url-base: https://github.com/rdavid/shellbase/blob/master/lib/base.sh
 :url-checkmake: https://github.com/mrtazz/checkmake
+:url-conform: https://github.com/siderolabs/conform
 :url-cv: http://cv.rabkin.co.il
 :url-goredo: http://www.goredo.stargrave.org/INSTALL.html
 :url-hoc: https://hitsofcode.com/view/github/rdavid/cbase?branch=master
@@ -41,6 +42,7 @@ Sergey Matveev's {url-goredo}[`goredo`] implementation works well.
 `redo lint` applies the following linters to the source files:
 {url-actionlint}[`actionlint`],
 {url-checkmake}[`checkmake`],
+{url-conform}[`conform`],
 {url-reuse}[`reuse`],
 {url-typos}[`typos`],
 {url-yamllint}[`yamllint`].
