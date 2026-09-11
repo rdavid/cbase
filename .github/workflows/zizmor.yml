@@ -4,15 +4,20 @@
 name: zizmor
 'on':
   pull_request:
-    paths: &paths ['.github/**']
+    paths: &paths
+      - .github/**
   push:
     branches: [master]
     paths: *paths
+  workflow_dispatch:
 permissions:
   contents: read
 concurrency:
-  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
-  cancel-in-progress: true
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+defaults:
+  run:
+    shell: sh
 jobs:
   zizmor:
     runs-on: ubuntu-24.04

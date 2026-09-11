@@ -1,18 +1,27 @@
 # SPDX-FileCopyrightText: 2025-2026 David Rabkin
 # SPDX-License-Identifier: 0BSD
+#
+# The release tarball is fetched and verified directly, rather than piping
+# the project's own download-actionlint.bash into bash, because that script
+# does not verify a checksum against the downloaded binary.
 ---
 name: actionlint
 'on':
   pull_request:
-    paths: &paths ['.github/workflows/**']
+    paths: &paths
+      - .github/**
   push:
     branches: [master]
     paths: *paths
+  workflow_dispatch:
 permissions:
   contents: read
 concurrency:
-  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
-  cancel-in-progress: true
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+defaults:
+  run:
+    shell: sh
 jobs:
   actionlint:
     runs-on: ubuntu-24.04
@@ -21,18 +30,25 @@ jobs:
       - uses: actions/checkout@v7.0.1
         with:
           persist-credentials: false
-      - run: |
-          sum=8aca8db96f1b94770f1b0d72b6dddcb1ebb8123cb3712530b08cc387b349a3d8
-          tar=actionlint.tar.gz
-          ver=1.7.12
+      - id: cache
+        uses: actions/cache@v6.1.0
+        with:
+          path: ./actionlint
+          key: actionlint-1.7.12-${{ runner.os }}
+      - if: steps.cache.outputs.cache-hit != 'true'
+        run: |
           srv=https://github.com/rhysd/actionlint/releases/download
+          sum=8aca8db96f1b94770f1b0d72b6dddcb1ebb8123cb3712530b08cc387b349a3d8
+          ver=1.7.12
+          tgz=actionlint_${ver}_linux_amd64.tar.gz
           curl \
             --fail \
             --location \
-            --output "$tar" \
+            --output "$tgz" \
+            --retry 3 \
             --show-error \
             --silent \
-            "$srv/v$ver/actionlint_${ver}_linux_amd64.tar.gz"
-          echo "$sum  $tar" | sha256sum --check --quiet
-          tar -xzf "$tar" actionlint
-          ./actionlint
+            "$srv/v$ver/$tgz"
+          printf '%s  %s\n' "$sum" "$tgz" | sha256sum --check --status
+          tar --extract --file "$tgz" actionlint
+      - run: ./actionlint

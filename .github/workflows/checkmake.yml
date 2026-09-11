@@ -8,15 +8,18 @@ name: checkmake
       - '**.mk'
       - '**/Makefile'
       - .github/workflows/checkmake.yml
-      - Makefile
   push:
     branches: [master]
     paths: *paths
+  workflow_dispatch:
 permissions:
   contents: read
 concurrency:
-  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
-  cancel-in-progress: true
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+defaults:
+  run:
+    shell: sh
 jobs:
   checkmake:
     runs-on: ubuntu-24.04
@@ -25,23 +28,30 @@ jobs:
       - uses: actions/checkout@v7.0.1
         with:
           persist-credentials: false
-      - run: |
-          bin=/usr/local/bin/checkmake
+      - id: cache
+        uses: actions/cache@v6.1.0
+        with:
+          path: ./checkmake
+          key: checkmake-0.3.2-${{ runner.os }}
+      - if: steps.cache.outputs.cache-hit != 'true'
+        run: |
+          srv=https://github.com/mrtazz/checkmake/releases/download
           sum=e2effb876913f3ee2caef0ba35f6202c5e8a3cd55a077d8d2b9ce2034257b6af
           ver=0.3.2
-          srv=https://github.com/checkmake/checkmake/releases/download
           curl \
             --fail \
             --location \
-            --output "$bin" \
+            --output ./checkmake \
+            --retry 3 \
             --show-error \
             --silent \
             "$srv/v$ver/checkmake-v$ver.linux.amd64"
-          echo "$sum  $bin" | sha256sum --check --quiet
-          chmod +x "$bin"
+          printf '%s  %s\n' "$sum" ./checkmake | sha256sum --check --status
+          chmod +x ./checkmake
+      - run: |
           find . -path ./.git -prune -o \
             \( -name Makefile -o -name '*.mk' \) -print0 |
             xargs \
               --no-run-if-empty \
               --null \
-              "$bin"
+              ./checkmake
