@@ -47,7 +47,7 @@ toc::[]
 
 == About
 
-A collection of basic C functions and examples.
+A collection of basic, reusable C functions.
 
 == Build
 
