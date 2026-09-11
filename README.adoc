@@ -5,7 +5,7 @@
 :img-hoc: https://hitsofcode.com/github/rdavid/cbase?branch=master&label=hits%20of%20code
 :img-license: https://img.shields.io/github/license/rdavid/cbase?color=94bff3&labelColor=555555&logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI%2BPHRleHQgeD0iMTIiIHk9IjIwIiBmb250LWZhbWlseT0iSGVsdmV0aWNhLEFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNkY2RjY2MiPiYjMTY5OzwvdGV4dD48L3N2Zz4%3D&style=flat
 :img-test: https://img.shields.io/github/actions/workflow/status/rdavid/cbase/test.yml?branch=master&color=7f9f7f&label=test&labelColor=555555&logo=github&logoColor=dcdccc&style=flat
-:url-actionlint: https://github.com/rhysd/actionlint
+:url-actionlint: https://rhysd.github.io/actionlint/
 :url-base: https://github.com/rdavid/shellbase/blob/master/lib/base.sh
 :url-checkmake: https://github.com/mrtazz/checkmake
 :url-conform: https://github.com/siderolabs/conform
@@ -14,11 +14,11 @@
 :url-hoc: https://hitsofcode.com/view/github/rdavid/cbase?branch=master
 :url-license: https://github.com/rdavid/cbase/blob/master/LICENSES/0BSD.txt
 :url-redo: http://cr.yp.to/redo.html
-:url-reuse: https://github.com/fsfe/reuse-action
+:url-reuse: https://reuse.software/
 :url-test: https://github.com/rdavid/cbase/actions/workflows/test.yml
 :url-typos: https://github.com/crate-ci/typos
-:url-yamllint: https://github.com/adrienverge/yamllint
-:url-zizmor: https://github.com/zizmorcore/zizmor
+:url-yamllint: https://yamllint.readthedocs.io/
+:url-zizmor: https://docs.zizmor.sh/
 
 = C Base
 
