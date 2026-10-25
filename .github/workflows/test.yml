@@ -39,7 +39,7 @@ jobs:
           persist-credentials: false
       - run: |
           if [ "$RUNNER_OS" = macOS ]; then
-            brew install goredo
+            brew install rdavid/tap/goredo
           fi
           cc \
             -Iinclude \
