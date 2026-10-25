@@ -51,13 +51,14 @@ A collection of basic, reusable C functions.
 
 == Build
 
-The project uses {url-redo}[`redo`], Daniel J. Bernstein's build system.
-Sergey Matveev's {url-goredo}[`goredo`] implementation works well.
+The project builds with {url-redo}[`redo`], Daniel J. Bernstein's build
+system.
+Sergey Matveev's {url-goredo}[`goredo`] is a good implementation.
 
 == Test
 
 `redo test` runs the unit tests.
-`redo lint` applies the following linters to the source files and commit
+`redo lint` runs the following linters on the source files and commit
 messages:
 {url-actionlint}[`actionlint`],
 {url-checkmake}[`checkmake`],

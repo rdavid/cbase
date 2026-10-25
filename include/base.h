@@ -62,8 +62,8 @@
 )
 
 /**
- * Produces a pointer one past the last element of an array. It serves the
- * usual pattern for iterating over sequence data:
+ * Produces a pointer one past the last element of an array. It supports the
+ * usual pattern for iterating over an array:
  *   int arr[] = { 1, 2 };
  *   for (int *p = arr; p != ARRAYEND(arr); ++p) {
  *       ...
@@ -82,9 +82,9 @@
 #define MEMBERSIZE(type, member) (ARRAYSIZE(((type *)0)->member))
 
 /**
- * Suppresses compiler warnings about unused parameters. Place it at the very
- * beginning of a function body. It is meant for function parameters rather
- * than for unused local variables.
+ * Suppresses compiler warnings about unused parameters. Place it at the start
+ * of a function body. Use it for function parameters, not for unused local
+ * variables.
  */
 #define UNREFERENCED_PARAM(param) \
     ((void)(0 ? ((param) = (param)) : (param)))
@@ -96,23 +96,20 @@
 #define STR(x) _STR(x)
 
 /**
- * Formats output into a string, similar to snprintf.
- * The function writes at most len-1 of the printed characters into the output
- * string (the len'th character then gets the terminating `\0'). If the return
- * value is greater than or equal to the len argument, the string was too
- * short and some of the printed characters were discarded. The output is
- * always null-terminated, unless len is 0.
+ * Formats output into a string, like snprintf.
+ * If the output does not fit into len bytes, the function discards it, sets
+ * the buffer to an empty string, and fails. Otherwise the output is
+ * null-terminated.
  * @param str Output buffer.
- * @param len Maximum number of bytes to write.
- * @param fmt Format string, similar to snprintf.
- * @return The number of characters that would have been printed had the size
- * been unlimited, not including the final `\0'. Returns a negative value if
- * an error occurs.
+ * @param len Maximum number of bytes to write, including the final `\0'.
+ * @param fmt Format string, as for snprintf.
+ * @return The number of characters written, not including the final `\0'.
+ * Returns -1 on a formatting error or when the buffer is too small.
  */
 int print_to_string(char *str, size_t len, const char *fmt, ...);
 
 /**
- * Improves on strerror_r, inspired by the article:
+ * Describes an errno value portably, improving on strerror_r. Inspired by:
  *   http://www.club.cc.cmu.edu/~cmccabe/blog_strerror.html
  * @param err The errno value to describe.
  * @param str Points to the first byte available for printing.
@@ -122,11 +119,12 @@ int print_to_string(char *str, size_t len, const char *fmt, ...);
 const char *strerror_r_improved(int err, char *str, size_t len);
 
 /**
- * Returns a pointer to a string with a timestamp formatted similar to:
+ * Returns a pointer to a string with a timestamp formatted like:
  *   Mon Feb 17 13:22:05 2020
  * @param str Points to the first byte available for printing.
  * @param len Maximum number of bytes to write.
- * @return Pointer to the formatted timestamp, the string 'error' on error.
+ * @return Pointer to the formatted timestamp, or the string "error" on
+ * failure.
  */
 const char *humanized_timestamp(char *str, size_t len);
 

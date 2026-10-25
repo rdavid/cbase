@@ -25,7 +25,7 @@ int print_to_string(char *str, size_t len, const char *fmt, ...) {
         return -1;
     }
     // Only part of the string was written. The output of vsnprintf is always
-    // null terminated and can be printed for debugging.
+    // null-terminated, so it can be printed for debugging.
     if ((size_t)num >= len) {
         // LOGE("Buffer %zu is smaller than needed %d: %s.",
         //     len, num + 1, str);
@@ -33,7 +33,7 @@ int print_to_string(char *str, size_t len, const char *fmt, ...) {
         str[0] = '\0';
         return -1;
     }
-    assert('\0' == str[num] && "Result should be null terminated.");
+    assert('\0' == str[num] && "Result should be null-terminated.");
     return num;
 }
 
